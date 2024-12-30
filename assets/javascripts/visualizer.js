@@ -82,7 +82,7 @@ Visualizer.prototype.initialize = function () {
   });
 
   // Background colour of the scene
-  this.renderer.setClearColor(0xFFFFFF, 1);
+  this.renderer.setClearColor(0x0D0D0D, 1);
 
   // Create a light and add it to the scene
   var light = new THREE.PointLight(0xFFFFFF);

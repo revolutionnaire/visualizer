@@ -4,11 +4,11 @@
 */
 
 body {
+  color: #D9D6D2;
   margin: 0;
 }
 
 #guide {
-  color: rgb(64,61,82);
   font-family: "Space Mono", monospace;
   font-variant: small-caps;
   text-transform: lowercase;
