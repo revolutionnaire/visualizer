@@ -102,7 +102,7 @@ Visualizer.prototype.initialize = function () {
 Visualizer.prototype.createBall = function () {
 
   // Create and add the sphere
-  var geometry = new THREE.SphereGeometry(this.sphereRadius, 30, 10);
+  var geometry = new THREE.SphereGeometry(this.sphereRadius, 30, 10, 0, Math.PI*2, 0, Math.PI*2);
   var material = new THREE.MeshBasicMaterial({color: 0xFFFF00, wireframe: false});
   this.ball = new THREE.Mesh(geometry, material);
   this.scene.add(this.ball);
