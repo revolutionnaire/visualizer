@@ -6,14 +6,15 @@ document.addEventListener('DOMContentLoaded', function(e) {
   visualizer.initialize();
   visualizer.createBall();
   visualizer.setupAudioProcessing();
-  visualizer.handleDrop()
+  visualizer.handleDrop();
+  visualizer.handleKeyboard();
 
 });
 
 function Visualizer () {
 
     //Constant
-    this.sphereRadius = 10;
+    this.sphereRadius = 12;
 
     //Rendering
     this.camera;
@@ -101,7 +102,7 @@ Visualizer.prototype.initialize = function () {
 Visualizer.prototype.createBall = function () {
 
   // Create and add the sphere
-  var geometry = new THREE.SphereGeometry(this.sphereRadius, 32, 32);
+  var geometry = new THREE.SphereGeometry(this.sphereRadius, 30, 10);
   var material = new THREE.MeshBasicMaterial({color: 0xFFFF00, wireframe: false});
   this.ball = new THREE.Mesh(geometry, material);
   this.scene.add(this.ball);
@@ -245,6 +246,25 @@ Visualizer.prototype.handleDrop = function () {
     // Load the file
     visualizer.audioContext.resume();
     visualizer.start(file);
+
+  }, false);
+
+};
+
+Visualizer.prototype.handleKeyboard = function () {
+
+  document.body.addEventListener('keydown', function(e) {
+
+    // Check if it's the space bar
+    if (e.keyCode == 32) {
+
+      // Toggle audio
+      if (visualizer.audio.paused)
+        visualizer.audio.play();
+      else
+        visualizer.audio.pause();
+
+    }
 
   }, false);
 
