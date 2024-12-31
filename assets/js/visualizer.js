@@ -1,8 +1,3 @@
-/* http://revolutionnaire.github.io/
-   v0.1.1 | 20190112
-   License: none (public domain)
-*/
-
 var visualizer;
 
 document.addEventListener('DOMContentLoaded', function(e) {
