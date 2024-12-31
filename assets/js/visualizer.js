@@ -92,6 +92,15 @@ Visualizer.prototype.initialize = function () {
   // Add interaction capabilities to the scene
   this.controls = new THREE.OrbitControls(this.camera, this.renderer.domElement);
 
+  // Render ball and loop it
+  function renderLoop() {
+    that.renderer.render(that.scene, that.camera);
+    that.controls.update();
+    requestAnimationFrame(renderLoop);
+  }
+
+  renderLoop();
+
 };
 
 Visualizer.prototype.createBall = function () {
