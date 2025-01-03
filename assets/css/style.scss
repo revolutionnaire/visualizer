@@ -4,6 +4,11 @@
 body {
   background-color: #D9D6D2;
   color: #736B65;
+  font-family: "Space Mono", monospace;
+  font-variant: small-caps;
+  text-align: center;
+  text-transform: lowercase;
+  text-rendering: optimizeLegibility;
   margin: 0;
 }
 
@@ -13,13 +18,14 @@ a {
 
 #guide {
   width: 100%;
-  font-family: "Space Mono", monospace;
-  font-variant: small-caps;
-  text-align: center;
-  text-transform: lowercase;
-  text-rendering: optimizeLegibility;
   position: absolute;
   right: 50%;
   bottom: 50%;
   transform: translate(50%,50%);
+}
+
+#colophon {
+  width: 100%;
+  position: absolute;
+  bottom: 12px;
 }
