@@ -68,7 +68,7 @@ Visualizer.prototype.initialize = function () {
   window.addEventListener('resize', function(e) {
 
     var vw = window.innerWidth,
-    vh = window.innerHeight;
+        vh = window.innerHeight;
 
     that.renderer.setSize(vw, vh);
 
