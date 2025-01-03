@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 function Visualizer () {
 
     //Constant
-    this.sphereRadius = 10;
+    this.sphereRadius = 8;
 
     //Rendering
     this.camera;
