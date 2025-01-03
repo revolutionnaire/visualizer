@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 function Visualizer () {
 
     //Constant
-    this.sphereRadius = 8;
+    this.sphereRadius = 10;
 
     //Rendering
     this.camera;
@@ -90,9 +90,11 @@ Visualizer.prototype.initialize = function () {
 
   // Render ball and loop it
   function renderLoop() {
+
     that.renderer.render(that.scene, that.camera);
     that.controls.update();
     requestAnimationFrame(renderLoop);
+
   }
 
   renderLoop();
