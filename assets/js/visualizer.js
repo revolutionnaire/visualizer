@@ -266,7 +266,7 @@ Visualizer.prototype.handleKeyboard = function () {
     if (e.keyCode == 32) {
 
       // Toggle audio
-      if (visualizer.audio.paused)
+      if (visualizer.audio.paused && !this.audio)
         visualizer.audio.play();
       else
         visualizer.audio.pause();
