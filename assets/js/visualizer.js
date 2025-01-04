@@ -31,7 +31,7 @@ function Visualizer () {
     this.audio;
     this.audioContext;
     this.noise;
-    this.javascriptNode;
+    this.audioWorkletNode;
     this.sourceBuffer;
 
 }
@@ -130,14 +130,14 @@ Visualizer.prototype.modulate = function(value, minValue, maxValue, outterMin, o
   return outterMin + (fraction * delta);
 };
 
-Visualizer.prototype.setupAudioProcessing = function () {
+Visualizer.prototype.setupAudioProcessing = async function () {
 
   // Setup the audio context
   this.audioContext = new AudioContext();
+  await this.audioContext.audioWorklet.addModule('/assets/js/audio-processor.js');
 
-  // Create a JS node
-  this.javascriptNode = this.audioContext.createScriptProcessor(2048, 1, 1);
-  this.javascriptNode.connect(this.audioContext.destination);
+  // Create an AudioWorkletNode
+  this.audioWorkletNode = new AudioWorkletNode(this.audioContext, 'audio-processor');
 
   // Create the source buffer
   this.sourceBuffer = this.audioContext.createMediaElementSource(this.audio);
@@ -151,14 +151,15 @@ Visualizer.prototype.setupAudioProcessing = function () {
   this.sourceBuffer.connect(this.analyser);
 
   // Then, the analyser to speakers
-  this.analyser.connect(this.javascriptNode);
+  this.analyser.connect(this.audioContext.destination);
 
   // Connect source to analyser
   this.sourceBuffer.connect(this.audioContext.destination);
 
   var that = this
 
-  this.javascriptNode.addEventListener('audioprocess', function(e) {
+  // Update ball radius
+  function updateVisualization() {
 
     // Get the average for the first channel
     var array = new Uint8Array(that.analyser.frequencyBinCount);
@@ -195,7 +196,11 @@ Visualizer.prototype.setupAudioProcessing = function () {
     visualizer.ball.geometry.computeVertexNormals();
     visualizer.ball.geometry.computeFaceNormals();
 
-  });
+    requestAnimationFrame(updateVisualization);
+
+  };
+
+  updateVisualization();
 
 };
 
