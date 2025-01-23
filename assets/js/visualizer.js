@@ -31,7 +31,6 @@ function Visualizer () {
     this.audio;
     this.audioContext;
     this.noise;
-    this.audioWorkletNode;
     this.sourceBuffer;
 
 }
@@ -130,14 +129,10 @@ Visualizer.prototype.modulate = function(value, minValue, maxValue, outterMin, o
   return outterMin + (fraction * delta);
 };
 
-Visualizer.prototype.setupAudioProcessing = async function () {
+Visualizer.prototype.setupAudioProcessing = function () {
 
   // Setup the audio context
   this.audioContext = new AudioContext();
-  await this.audioContext.audioWorklet.addModule('/assets/js/audio-processor.js');
-
-  // Create an AudioWorkletNode
-  this.audioWorkletNode = new AudioWorkletNode(this.audioContext, 'audio-processor');
 
   // Create the source buffer
   this.sourceBuffer = this.audioContext.createMediaElementSource(this.audio);
